@@ -18,7 +18,8 @@ app.get('/', (req, res) => {
 // Live Routes
 app.get('/api/standings', async (req, res) => {
     try {
-        const standings = await apiSports.getStandings();
+        const season = parseInt(req.query.season) || 2025;
+        const standings = await apiSports.getStandings(season);
         res.json(standings);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -27,7 +28,8 @@ app.get('/api/standings', async (req, res) => {
 
 app.get('/api/teams', async (req, res) => {
     try {
-        const teams = await apiSports.getTeams();
+        const season = parseInt(req.query.season) || 2025;
+        const teams = await apiSports.getTeams(season);
         res.json(teams);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -47,12 +49,14 @@ app.get('/api/players', async (req, res) => {
 
 app.get('/api/fixtures', async (req, res) => {
     try {
-        const fixtures = await apiSports.getFixtures();
+        const season = parseInt(req.query.season) || 2025;
+        const fixtures = await apiSports.getFixtures(season);
         res.json(fixtures);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 app.get('/api/live', async (req, res) => {
     try {

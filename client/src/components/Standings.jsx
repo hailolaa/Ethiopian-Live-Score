@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
 import './Standings.css';
 
-const Standings = () => {
+const Standings = ({ season = 2025 }) => {
     const [standings, setStandings] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/standings')
+        setLoading(true);
+        fetch(`/api/standings?season=${season}`)
             .then(res => res.json())
             .then(data => {
                 setStandings(data);
                 setLoading(false);
             })
             .catch(err => console.error('Error fetching standings:', err));
-    }, []);
+    }, [season]);
+
 
     if (loading) return <div className="loading">Loading Standings...</div>;
 

@@ -2,19 +2,23 @@ import { useState, useEffect } from 'react';
 import { Clock, MapPin } from 'lucide-react';
 import './Fixtures.css';
 
-const Fixtures = () => {
+const Fixtures = ({ season = 2025 }) => {
     const [fixtures, setFixtures] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/fixtures')
+        setLoading(true);
+        fetch(`/api/fixtures?season=${season}`)
             .then(res => res.json())
             .then(data => {
-                setFixtures(data);
+                // Sort by date, latest first
+                const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setFixtures(sorted);
                 setLoading(false);
             })
             .catch(err => console.error('Error fetching fixtures:', err));
-    }, []);
+    }, [season]);
+
 
     if (loading) return <div className="loading">Loading Fixtures...</div>;
 
