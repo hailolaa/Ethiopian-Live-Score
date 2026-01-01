@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Standings from './components/Standings'
-import Fixtures from './components/Fixtures'
+import Home from './pages/Home'
+import FixturesPage from './pages/FixturesPage'
+import StandingsPage from './pages/StandingsPage'
+import PlayersPage from './pages/PlayersPage'
 import './App.css'
 
 function App() {
     const [darkMode, setDarkMode] = useState(true);
-    const [activeTab, setActiveTab] = useState('home');
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
@@ -24,14 +26,12 @@ function App() {
                     <p>Real-time updates from the heart of Ethiopian football</p>
                 </header>
 
-                <div className="dashboard-grid">
-                    <div className="stats-panel">
-                        <Standings />
-                    </div>
-                    <div className="fixtures-panel">
-                        <Fixtures />
-                    </div>
-                </div>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/fixtures" element={<FixturesPage />} />
+                    <Route path="/standings" element={<StandingsPage />} />
+                    <Route path="/players" element={<PlayersPage />} />
+                </Routes>
             </main>
 
             <footer className="footer">
