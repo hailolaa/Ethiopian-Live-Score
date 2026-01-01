@@ -1,0 +1,56 @@
+.standings-container {
+    background-color: var(--surface);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.standings-container h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.standings-table th {
+    text-align: left;
+    padding: 0.75rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.standings-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.team-name {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.points {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.top-team {
+    background-color: rgba(46, 125, 50, 0.05);
+}
+
+[data-theme='dark'] .top-team {
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+.loading {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-dim);
+}
