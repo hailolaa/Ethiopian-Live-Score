@@ -6,7 +6,7 @@ const PlayersPage = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/players')
+        fetch('/api/players?team=4110')
             .then(res => res.json())
             .then(data => {
                 setPlayers(data);

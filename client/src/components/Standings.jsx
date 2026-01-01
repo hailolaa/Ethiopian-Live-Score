@@ -39,7 +39,10 @@ const Standings = () => {
                     {standings.map((item, index) => (
                         <tr key={item.teamId} className={index < 3 ? 'top-team' : ''}>
                             <td>{index + 1}</td>
-                            <td className="team-name">{item.teamName}</td>
+                            <td className="team-name-cell">
+                                <img src={item.logo} alt={item.teamName} className="team-logo-table" />
+                                <span className="team-name">{item.teamName}</span>
+                            </td>
                             <td>{item.played}</td>
                             <td>{item.won}</td>
                             <td>{item.drawn}</td>

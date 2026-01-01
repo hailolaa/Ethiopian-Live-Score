@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import LiveTicker from './components/LiveTicker'
 import Home from './pages/Home'
 import FixturesPage from './pages/FixturesPage'
 import StandingsPage from './pages/StandingsPage'
@@ -19,6 +20,7 @@ function App() {
     return (
         <div className="app-container">
             <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <LiveTicker />
 
             <main className="main-content">
                 <header className="page-header">

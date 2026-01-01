@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const { teams, standings, players, fixtures } = require('./data/mockData');
+const apiSports = require('./services/apiSports');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,28 +12,57 @@ app.use(express.json());
 
 // Basic route
 app.get('/', (req, res) => {
-    res.json({ message: 'Ethiopian Premier League API is running' });
+    res.json({ message: 'Ethiopian Premier League API (Live) is running' });
 });
 
-// Mock routes
-app.get('/api/standings', (req, res) => res.json(standings));
-app.get('/api/teams', (req, res) => res.json(teams));
-app.get('/api/fixtures', (req, res) => res.json(fixtures));
-app.get('/api/players', (req, res) => res.json(players));
-
-// Team by ID
-app.get('/api/teams/:id', (req, res) => {
-    const team = teams.find(t => t.id === parseInt(req.params.id));
-    if (!team) return res.status(404).json({ message: 'Team not found' });
-    res.json(team);
+// Live Routes
+app.get('/api/standings', async (req, res) => {
+    try {
+        const standings = await apiSports.getStandings();
+        res.json(standings);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
-// Player by ID
-app.get('/api/players/:id', (req, res) => {
-    const player = players.find(p => p.id === parseInt(req.params.id));
-    if (!player) return res.status(404).json({ message: 'Player not found' });
-    res.json(player);
+app.get('/api/teams', async (req, res) => {
+    try {
+        const teams = await apiSports.getTeams();
+        res.json(teams);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
+
+app.get('/api/players', async (req, res) => {
+    try {
+        const teamId = req.query.team || 4110; // Default to a team for now
+        const players = await apiSports.getPlayers(teamId);
+        res.json(players);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+app.get('/api/fixtures', async (req, res) => {
+    try {
+        const fixtures = await apiSports.getFixtures();
+        res.json(fixtures);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/live', async (req, res) => {
+    try {
+        const live = await apiSports.getLiveScores();
+        res.json(live);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

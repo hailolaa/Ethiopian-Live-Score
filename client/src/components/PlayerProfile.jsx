@@ -23,10 +23,10 @@ const PlayerProfile = ({ playerId }) => {
     return (
         <div className="profile-card">
             <div className="profile-header">
-                <div className="profile-logo-placeholder"><User size={32} /></div>
+                <img src={player.photo} alt={player.name} className="player-photo" />
                 <div className="profile-info">
                     <h2>{player.name}</h2>
-                    <p className="position-info"><Star size={16} /> {player.position}</p>
+                    <p className="position-info"><Star size={16} /> {player.position} - {player.teamName}</p>
                 </div>
             </div>
             <div className="profile-stats">

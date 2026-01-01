@@ -32,7 +32,8 @@ const Fixtures = () => {
                         </div>
                         <div className="match-teams">
                             <div className="team">
-                                <span className="team-name">{match.homeTeamId === 1 ? 'Saint George SC' : match.homeTeamId === 3 ? 'Fasil Kenema' : 'Team ' + match.homeTeamId}</span>
+                                <img src={match.homeLogo} alt={match.homeTeam} className="team-logo-small" />
+                                <span className="team-name">{match.homeTeam}</span>
                             </div>
                             <div className="score">
                                 {match.status === 'scheduled' ? (
@@ -42,7 +43,8 @@ const Fixtures = () => {
                                 )}
                             </div>
                             <div className="team">
-                                <span className="team-name">{match.awayTeamId === 2 ? 'Eth. Coffee' : match.awayTeamId === 4 ? 'Bahir Dar City' : 'Team ' + match.awayTeamId}</span>
+                                <img src={match.awayLogo} alt={match.awayTeam} className="team-logo-small" />
+                                <span className="team-name">{match.awayTeam}</span>
                             </div>
                         </div>
                         <div className="match-footer">
