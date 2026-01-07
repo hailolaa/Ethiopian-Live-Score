@@ -3,6 +3,7 @@
 A web application for live Ethiopian Premier League football scores, fixtures, standings, teams, and player information.
 
 ![Project Banner](https://github.com/hailolaa/Ethiopian-Live-Score/raw/main/banner.png)
+live at https:/ethlivescore.vercel.app
 
 ## Features
 
